@@ -4,15 +4,13 @@ spring:
   application:
     name: game-keeper
 kafka:
-  producer:
-    bootstrap-servers: kafka:9092
-    topic: gkeeper-input-topic
+  bootstrap-servers: kafka:9092
+  topics:
+    metrics: device-metrics
+    device-states: device-states
+    game-states: game-states
   consumer:
-    bootstrap-servers: kafka:9092
     group-id: gkeeper-group
-    topic: gkeeper-output-topic
   streams:
     application-id: game-keeper-application
-    bootstrap-servers: kafka:9092
-    input-topic: gkeeper-input-topic
     output-topic: gkeeper-output-topic

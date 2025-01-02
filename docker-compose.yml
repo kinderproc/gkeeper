@@ -42,13 +42,14 @@ services:
       - kafka
     command: "bash -c 'echo Waiting for Kafka to be ready... && \
                  cub kafka-ready -b kafka:9092 1 180 && \
-                 kafka-topics --create --topic gkeeper-input-topic --partitions 1 --replication-factor 1 --if-not-exists --bootstrap-server kafka:9092 && \
-                 kafka-topics --create --topic gkeeper-output-topic --partitions 1 --replication-factor 1 --if-not-exists --bootstrap-server kafka:9092'"
+                 kafka-topics --create --topic device-metrics --partitions 1 --replication-factor 1 --if-not-exists --bootstrap-server kafka:9092 && \
+                 kafka-topics --create --topic device-states --partitions 1 --replication-factor 1 --if-not-exists --bootstrap-server kafka:9092 && \
+                 kafka-topics --create --topic game-states --partitions 1 --replication-factor 1 --if-not-exists --bootstrap-server kafka:9092'"
     networks:
       - gkeeper-net
         
   game-keeper:
-    image: docker.io/library/game-keeper:latest
+    image: algon/gkeeper:latest
     depends_on:
       - kafka
       - kafka-init-topics

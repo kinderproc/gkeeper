@@ -10,7 +10,7 @@ public class KafkaProducerService {
 
   private final KafkaTemplate<String, Message> kafkaTemplate;
 
-  @Value("${kafka.producer.topic}")
+  @Value("${kafka.topics.metrics}")
   private String topic;
 
   public void send(String topic, Message message) {

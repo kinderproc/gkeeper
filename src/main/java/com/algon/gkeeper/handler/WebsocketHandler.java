@@ -21,8 +21,7 @@ public class WebsocketHandler extends TextWebSocketHandler {
 
   private final ProcessingService processingService;
 
-  @Value("${kafka.producer.topic}")
-  private String inputTopic;
+  private final String inputTopic;
 
   @Override
   public void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
@@ -45,4 +44,5 @@ public class WebsocketHandler extends TextWebSocketHandler {
     var response = String.format("Request %s successfully sent", request.id());
     session.sendMessage(new TextMessage(response));
   }
+
 }

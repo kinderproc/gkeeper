@@ -15,7 +15,7 @@ public class KafkaStreamsConfig {
 
   @Bean
   public Properties processingServiceProperties(
-      @Value("${kafka.streams.bootstrap-servers}") String bootstrapServers,
+      @Value("${kafka.bootstrap-servers}") String bootstrapServers,
       @Value("${kafka.streams.application-id}") String applicationId) {
     var properties = new Properties();
     properties.put(StreamsConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
@@ -31,7 +31,7 @@ public class KafkaStreamsConfig {
   @Bean
   public ProcessingService processingService(
       @Qualifier("processingServiceProperties") Properties processingServiceProperties,
-      @Value("${kafka.streams.input-topic}") String inputTopic,
+      @Value("${kafka.topics.metrics}") String inputTopic,
       @Value("${kafka.streams.output-topic}") String outputTopic) {
     return new ProcessingService(processingServiceProperties, inputTopic, outputTopic);
   }
