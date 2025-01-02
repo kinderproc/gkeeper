@@ -8,7 +8,7 @@ import org.springframework.kafka.annotation.KafkaListener;
 public class KafkaConsumerService {
 
   @KafkaListener(
-      topics = "${kafka.consumer.topic}",
+      topics = "${kafka.topics.metrics}",
       containerFactory = "kafkaListenerContainerFactory")
   public void listen(Message message) {
     log.info("Received client message: " + message);
